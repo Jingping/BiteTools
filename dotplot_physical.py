@@ -98,8 +98,8 @@ def dotplot(ax, anchors, qbed, sbed, topn, axes):
         cbreaks[("query", seqid)] = (beg, end)
         xchr_labels.append((seqid, (beg + end)/2))
         x, y= np.array([beg, beg], 'f')/xmax, [0,1]
-        ax.plot(x, y, "-", color='g', alpha=.8, zorder=10)
-    ax.add_patch(Rectangle((.998,0), .002,1, lw=.2, color='g', fc='g', fill=True, alpha=.8,zorder=10))
+        ax.plot(x, y, "-", color='y', alpha=.8, zorder=10)
+    ax.add_patch(Rectangle((.998,0), .002,1, lw=.2, color='y', fc='y', fill=True, alpha=.8,zorder=10))
 
     get_breaks_subject = lambda bed: [[f.accn, f.start, f.end] for (i, f) in enumerate(bed)]
     chr_cum=0
@@ -111,9 +111,9 @@ def dotplot(ax, anchors, qbed, sbed, topn, axes):
         cbreaks[("subject", seqid)] = (beg, end)
         ychr_labels.append((seqid, (beg + end)/2))
         x, y= [0, 1], np.array([beg, beg], 'f')/ymax
-        ax.plot(x, y, "-", color='g', alpha=.8,zorder=10)
+        ax.plot(x, y, "-", color='y', alpha=.8,zorder=10)
         chr_cum = end
-    ax.add_patch(Rectangle((0,1), 1, .002, lw=.2, color='g', fc='g', fill=True, alpha=.8,zorder=10))
+    ax.add_patch(Rectangle((0,1), 1, .002, lw=.2, color='y', fc='y', fill=True, alpha=.8,zorder=10))
 
     
     # plot the chromosome labels
@@ -148,7 +148,7 @@ if __name__ == '__main__':
     fig = plt.figure(1, (8,8), dpi=300)
     ax = axes([0.1,0.1,.8,.8])
 
-    dotplot(ax, anchors, qbed, sbed, topn, axes=blast_file.split("_")[0:2])
+    dotplot(ax, anchors, qbed, sbed, topn, axes=blast_file.split('.')[0].split("_")[0:2]) ## notice naming might need to be modified
 
     ax.set_xlim(0,1)
     ax.set_ylim(0,1)
